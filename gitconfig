@@ -27,3 +27,7 @@
   prune = true
 [rebase]
   autosquash = true
+[url "https://hub.fastgit.org/"]
+	insteadOf = https://github.com/
+[protocol "https"]
+	allow = always
