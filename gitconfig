@@ -1,0 +1,29 @@
+[user]
+	name = billow
+	email = billow.fun@gmail.com
+	signingkey = 603F70632BFEE500985451C4A3FC7AFAF1932697
+[hub]
+	protocol = git
+[core]
+	autocrlf = input
+	editor = "emacs -nw"
+	excludesfile = /home/aya/.gitignore_global
+	pager = less -r
+[credential]
+	helper = cache --timeout=604800
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[commit]
+	gpgsign = false
+	#template = ~/.gitmessage
+[color]
+	ui = true
+[init]
+	defaultBranch = main
+[fetch]
+  prune = true
+[rebase]
+  autosquash = true

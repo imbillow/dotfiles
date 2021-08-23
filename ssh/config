@@ -1,0 +1,6 @@
+#ProxyCommand=ncat --proxy 127.0.0.1:1080 --proxy-type socks5 %h %p
+
+Host github.com
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/gh
+    User git

@@ -1,0 +1,37 @@
+[source.crates-io]
+replace-with = 'tuna'
+
+[source.tuna]
+registry = "https://mirrors.tuna.tsinghua.edu.cn/git/crates.io-index.git"
+
+[alias]     # command aliases
+b = "build"
+c = "check"
+t = "test"
+r = "run"
+rr = "run --release"
+
+[build]
+jobs = 8
+rustc = "rustc"
+rustdoc = "rustdoc"
+incremental = true
+pipelining = true
+
+[cargo-new]
+vcs = "git"
+
+[http]
+debug = true                # HTTP debugging
+ssl-version.max = "tlsv1.3" # maximum TLS version
+ssl-version.min = "tlsv1.1" # minimum TLS version
+timeout = 30                # timeout for each HTTP request, in seconds
+low-speed-limit = 10        # network timeout threshold (bytes/sec)
+check-revoke = true         # check for SSL certificate revocation
+multiplexing = true         # HTTP/2 multiplexing
+
+[term]
+verbose = false         # whether cargo provides verbose output
+color = 'auto'         # whether cargo colorizes output
+progress.when = 'auto' # whether cargo shows progress bar
+progress.width = 80    # width of progress bar

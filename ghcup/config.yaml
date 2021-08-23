@@ -1,0 +1,27 @@
+cache: true
+downloader: Curl
+keep-dirs: Errors
+key-bindings:
+  changelog:
+    KChar: c
+  down:
+    KDown: []
+  install:
+    KChar: i
+  quit:
+    KChar: q
+  set:
+    KChar: s
+  show-all:
+    KChar: a
+  show-all-tools:
+    KChar: t
+  uninstall:
+    KChar: u
+  up:
+    KUp: []
+no-network: false
+no-verify: false
+url-source:
+  OwnSource: https://mirror.sjtu.edu.cn/ghcup/yaml/ghcup/data/ghcup-0.0.6.yaml
+verbose: true

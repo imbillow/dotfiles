@@ -1,0 +1,6 @@
+[ui]
+username = aya <billow.fun@gmail.com>
+verbose = True
+
+[worker]
+numcpus = 8
