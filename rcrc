@@ -1,5 +1,5 @@
 DOTFILES_DIRS="$HOME/.dotfiles"
 EXCLUDES="install* README*"
 TAGS="archlinux"
-SYMLINK_DIRS="config/fish config/kitty config/nvim"
+SYMLINK_DIRS="config/fish config/kitty config/nvim config/nvim-qt"
 UNDOTTED=""
