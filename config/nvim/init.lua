@@ -1,4 +1,3 @@
--- Install packer
 local install_path = vim.fn.stdpath 'data' ..
                        '/site/pack/packer/start/packer.nvim'
 
@@ -10,11 +9,10 @@ end
 local use = require('packer').use
 require('packer').startup {
   function()
-    use 'wbthomason/packer.nvim' -- Package manager
-    use 'tpope/vim-rhubarb' -- Fugitive-companion to interact with github
-    use 'tpope/vim-commentary' -- "gc" to comment visual regions/lines
-    use 'ludovicchabant/vim-gutentags' -- Automatic tags management
-    -- UI to select things (files, grep results, open buffers...)
+    use 'wbthomason/packer.nvim'
+    use 'tpope/vim-rhubarb'
+    use 'tpope/vim-commentary'
+    use 'ludovicchabant/vim-gutentags'
     use {
       'nvim-telescope/telescope.nvim',
       requires = {
@@ -32,7 +30,6 @@ require('packer').startup {
           },
         }
         require('telescope').load_extension('fzy_native')
-        -- Add leader shortcuts
         vim.api.nvim_set_keymap('n', '<leader><space>',
                                 [[<cmd>lua require('telescope.builtin').buffers()<CR>]],
                                 {noremap = true, silent = true})
@@ -78,11 +75,9 @@ require('packer').startup {
           component_function = {gitbranch = 'fugitive#head'},
         }
       end,
-    } -- Theme inspired by Atom
-    use 'itchyny/lightline.vim' -- Fancier statusline
-    -- Add indentation guides even on blank lines
+    }
+    use 'itchyny/lightline.vim'
     use 'lukas-reineke/indent-blankline.nvim'
-    -- Add git related info in the signs columns and popups
     use {
       'lewis6991/gitsigns.nvim',
       requires = {'nvim-lua/plenary.nvim'},
@@ -98,60 +93,60 @@ require('packer').startup {
         }
       end,
     }
-    -- Highlight, edit, and navigate code using a fast incremental parsing library
     use {
       'nvim-treesitter/nvim-treesitter',
-      config = require('nvim-treesitter.configs').setup {
-        highlight = {
-          enable = true, -- false will disable the whole extension
-        },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = 'gnn',
-            node_incremental = 'grn',
-            scope_incremental = 'grc',
-            node_decremental = 'grm',
-          },
-        },
-        indent = {enable = true},
-        textobjects = {
-          select = {
+      config = function()
+        require('nvim-treesitter.configs').setup {
+          highlight = {enable = true},
+          autopairs = {enable = true},
+          indent = {enable = true},
+          incremental_selection = {
             enable = true,
-            lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
             keymaps = {
-              -- You can use the capture groups defined in textobjects.scm
-              ['af'] = '@function.outer',
-              ['if'] = '@function.inner',
-              ['ac'] = '@class.outer',
-              ['ic'] = '@class.inner',
+              init_selection = 'gnn',
+              node_incremental = 'grn',
+              scope_incremental = 'grc',
+              node_decremental = 'grm',
             },
           },
-          move = {
-            enable = true,
-            set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next_start = {
-              [']m'] = '@function.outer',
-              [']]'] = '@class.outer',
+          textobjects = {
+            select = {
+              enable = true,
+              lookahead = true,
+              keymaps = {
+                ['af'] = '@function.outer',
+                ['if'] = '@function.inner',
+                ['ac'] = '@class.outer',
+                ['ic'] = '@class.inner',
+              },
             },
-            goto_next_end = {
-              [']M'] = '@function.outer',
-              [']['] = '@class.outer',
-            },
-            goto_previous_start = {
-              ['[m'] = '@function.outer',
-              ['[['] = '@class.outer',
-            },
-            goto_previous_end = {
-              ['[M'] = '@function.outer',
-              ['[]'] = '@class.outer',
+            move = {
+              enable = true,
+              set_jumps = true,
+              goto_next_start = {
+                [']m'] = '@function.outer',
+                [']]'] = '@class.outer',
+              },
+              goto_next_end = {
+                [']M'] = '@function.outer',
+                [']['] = '@class.outer',
+              },
+              goto_previous_start = {
+                ['[m'] = '@function.outer',
+                ['[['] = '@class.outer',
+              },
+              goto_previous_end = {
+                ['[M'] = '@function.outer',
+                ['[]'] = '@class.outer',
+              },
             },
           },
-        },
-        autopairs = {enable = true},
-      },
+        }
+
+        vim.o.foldmethod = 'expr'
+        vim.o.foldexpr = 'nvim_treesitter#foldexpr()'
+      end,
     }
-    -- Additional textobjects for treesitter
     use 'nvim-treesitter/nvim-treesitter-textobjects'
     use {
       'neovim/nvim-lspconfig',
@@ -213,6 +208,9 @@ require('packer').startup {
           vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so',
                                       [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]],
                                       opts)
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-M-l>',
+                                      [[<cmd>lua vim.lsp.buf.formatting()<CR>]],
+                                      opts)
           vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
         end
 
@@ -240,10 +238,11 @@ require('packer').startup {
         lspinstall.setup()
         local servers = lspinstall.installed_servers()
         for _, lsp in ipairs(servers) do
-          nvim_lsp[lsp].setup {
-            on_attach = on_attach,
-            capabilities = capabilities,
-          }
+          local config = {on_attach = on_attach, capabilities = capabilities}
+          if string.find(lsp, 'lua') then
+            config.settings = {Lua = {diagnostics = {globals = {'vim'}}}}
+          end
+          nvim_lsp[lsp].setup(config)
         end
         require'lspsaga'.init_lsp_saga()
       end,
@@ -256,8 +255,8 @@ require('packer').startup {
         local luasnip = require 'luasnip'
         local cmp = require 'cmp'
         cmp.setup {
-          map_cr = true, --  map <CR> on insert mode
-          map_complete = true, -- it will auto insert `(` after select function or method item
+          map_cr = true,
+          map_complete = true,
           snippet = {
             expand = function(args)
               require('luasnip').lsp_expand(args.body)
@@ -309,7 +308,7 @@ require('packer').startup {
     use 'hrsh7th/cmp-buffer'
     use 'hrsh7th/cmp-nvim-lsp'
     use 'saadparwaiz1/cmp_luasnip'
-    use 'L3MON4D3/LuaSnip' -- Snippets plugin
+    use 'L3MON4D3/LuaSnip'
     use {
       'tzachar/cmp-tabnine',
       run = './install.sh',
@@ -331,6 +330,18 @@ require('packer').startup {
     use {
       'kyazdani42/nvim-tree.lua',
       requires = {'kyazdani42/nvim-web-devicons'},
+      config = function()
+        vim.g.nvim_tree_hide_dotfiles = 1
+        vim.g.nvim_tree_indent_markers = 1
+        vim.g.nvim_tree_git_hl = 1
+        vim.g.nvim_tree_highlight_opened_files = 1
+        vim.g.nvim_tree_tab_open = 1
+        vim.g.nvim_tree_update_cwd = 1
+        vim.g.nvim_tree_respect_buf_cwd = 1
+        vim.g.nvim_tree_gitignore = 1
+        vim.api.nvim_set_keymap('n', '<leader>T', [[<cmd>NvimTreeToggle<CR>]],
+                                {noremap = true, silent = true})
+      end,
     }
     use 'dstein64/vim-startuptime'
   end,
@@ -341,9 +352,6 @@ require('packer').startup {
 }
 
 local setup_key = function()
-  vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<cr>',
-                          {noremap = true, silent = true})
-
   vim.o.hlsearch = true
   vim.wo.number = true
   vim.wo.relativenumber = true
@@ -351,7 +359,14 @@ local setup_key = function()
   vim.o.shell = '/usr/bin/fish'
   vim.o.grepprg = 'rg --hidden --vimgrep --smart-case --'
   vim.o.list = true
-  vim.o.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
+  vim.opt.listchars = {
+    tab = '»·',
+    eol = '↴',
+    nbsp = '+',
+    trail = '·',
+    extends = '→',
+    precedes = '←',
+  }
   vim.o.autoread = true
   vim.o.autowrite = true
   vim.o.smartcase = true
@@ -359,9 +374,13 @@ local setup_key = function()
   vim.o.hidden = true
   vim.o.splitbelow = true
   vim.o.splitright = true
-  vim.o.tabstop = 4
-  vim.o.shiftwidth = 4
+  vim.o.tabstop = 2
+  vim.o.shiftwidth = vim.o.tabstop
   vim.o.smartindent = true
+
+  vim.o.foldlevelstart = 1
+  vim.o.foldlevel = 1
+  -- vim.o.foldclose = 'all'
 
   vim.o.mouse = 'a'
   vim.o.breakindent = true
@@ -370,7 +389,6 @@ local setup_key = function()
   vim.o.updatetime = 250
   vim.wo.signcolumn = 'yes'
   vim.o.termguicolors = true
-
   vim.g.onedark_terminal_italics = 2
   vim.api.nvim_set_keymap('', '<Space>', '<Nop>',
                           {noremap = true, silent = true})
@@ -384,11 +402,9 @@ local setup_key = function()
                           {noremap = true, expr = true, silent = true})
 
   -- Map blankline
-  vim.g.indent_blankline_char = '┊'
   vim.g.indent_blankline_filetype_exclude = {'help', 'packer'}
   vim.g.indent_blankline_buftype_exclude = {'terminal', 'nofile'}
-  vim.g.indent_blankline_char_highlight = 'LineNr'
-  vim.g.indent_blankline_show_trailing_blankline_indent = false
+  vim.g.indent_blankline_show_trailing_blankline_indent = true
 
   -- Highlight on yank
   vim.api.nvim_exec([[
