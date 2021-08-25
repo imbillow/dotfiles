@@ -333,77 +333,71 @@ require('packer').startup {
       requires = {'kyazdani42/nvim-web-devicons'},
     }
     use 'dstein64/vim-startuptime'
-
-    -- keymaps
-    use {
-      'svermeulen/vimpeccable',
-      config = function()
-        local vimp = require 'vimp'
-        vimp.nnoremap('<C-n>', ':NvimTreeToggle<cr>')
-        vimp.nnoremap('<leader>nf', ':NvimTreeFindFile<cr>')
-        vimp.nnoremap('<leader>nr', ':NvimTreeRefresh<cr>')
-
-        vim.o.hlsearch = true
-        vim.wo.number = true
-        vim.wo.relativenumber = true
-        vim.o.expandtab = true
-        vim.o.shell = '/usr/bin/fish'
-        vim.o.grepprg = 'rg --hidden --vimgrep --smart-case --'
-        vim.o.list = true
-        vim.o.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
-        vim.o.autoread = true
-        vim.o.autowrite = true
-        vim.o.smartcase = true
-        vim.o.lazyredraw = true
-        vim.o.hidden = true
-        vim.o.splitbelow = true
-        vim.o.splitright = true
-        vim.o.tabstop = 4
-        vim.o.shiftwidth = 4
-        vim.o.smartindent = true
-
-        vim.o.mouse = 'a'
-        vim.o.breakindent = true
-        vim.opt.undofile = true
-        vim.o.ignorecase = true
-        vim.o.updatetime = 250
-        vim.wo.signcolumn = 'yes'
-        vim.o.termguicolors = true
-
-        vim.g.onedark_terminal_italics = 2
-        vim.api.nvim_set_keymap('', '<Space>', '<Nop>',
-                                {noremap = true, silent = true})
-        vim.g.mapleader = ' '
-        vim.g.maplocalleader = ' '
-
-        -- Remap for dealing with word wrap
-        vim.api.nvim_set_keymap('n', 'k', 'v:count == 0 ? \'gk\' : \'k\'',
-                                {noremap = true, expr = true, silent = true})
-        vim.api.nvim_set_keymap('n', 'j', 'v:count == 0 ? \'gj\' : \'j\'',
-                                {noremap = true, expr = true, silent = true})
-
-        -- Map blankline
-        vim.g.indent_blankline_char = '┊'
-        vim.g.indent_blankline_filetype_exclude = {'help', 'packer'}
-        vim.g.indent_blankline_buftype_exclude = {'terminal', 'nofile'}
-        vim.g.indent_blankline_char_highlight = 'LineNr'
-        vim.g.indent_blankline_show_trailing_blankline_indent = false
-
-        -- Highlight on yank
-        vim.api.nvim_exec([[
-          augroup YankHighlight
-            autocmd!
-            autocmd TextYankPost * silent! lua vim.highlight.on_yank()
-          augroup end
-        ]], false)
-        -- Y yank until the end of line  (note: this is now a default on master)
-        vim.api.nvim_set_keymap('n', 'Y', 'y$', {noremap = true})
-      end,
-    }
-
   end,
   config = {
     git = {default_url_format = 'https://hub.fastgit.org/%s.git'},
     profile = {enable = false},
   },
 }
+
+local setup_key = function()
+  vim.api.nvim_set_keymap('n', '<C-n>', ':NvimTreeToggle<cr>',
+                          {noremap = true, silent = true})
+
+  vim.o.hlsearch = true
+  vim.wo.number = true
+  vim.wo.relativenumber = true
+  vim.o.expandtab = true
+  vim.o.shell = '/usr/bin/fish'
+  vim.o.grepprg = 'rg --hidden --vimgrep --smart-case --'
+  vim.o.list = true
+  vim.o.listchars = 'tab:»·,nbsp:+,trail:·,extends:→,precedes:←'
+  vim.o.autoread = true
+  vim.o.autowrite = true
+  vim.o.smartcase = true
+  vim.o.lazyredraw = true
+  vim.o.hidden = true
+  vim.o.splitbelow = true
+  vim.o.splitright = true
+  vim.o.tabstop = 4
+  vim.o.shiftwidth = 4
+  vim.o.smartindent = true
+
+  vim.o.mouse = 'a'
+  vim.o.breakindent = true
+  vim.opt.undofile = true
+  vim.o.ignorecase = true
+  vim.o.updatetime = 250
+  vim.wo.signcolumn = 'yes'
+  vim.o.termguicolors = true
+
+  vim.g.onedark_terminal_italics = 2
+  vim.api.nvim_set_keymap('', '<Space>', '<Nop>',
+                          {noremap = true, silent = true})
+  vim.g.mapleader = ' '
+  vim.g.maplocalleader = ' '
+
+  -- Remap for dealing with word wrap
+  vim.api.nvim_set_keymap('n', 'k', 'v:count == 0 ? \'gk\' : \'k\'',
+                          {noremap = true, expr = true, silent = true})
+  vim.api.nvim_set_keymap('n', 'j', 'v:count == 0 ? \'gj\' : \'j\'',
+                          {noremap = true, expr = true, silent = true})
+
+  -- Map blankline
+  vim.g.indent_blankline_char = '┊'
+  vim.g.indent_blankline_filetype_exclude = {'help', 'packer'}
+  vim.g.indent_blankline_buftype_exclude = {'terminal', 'nofile'}
+  vim.g.indent_blankline_char_highlight = 'LineNr'
+  vim.g.indent_blankline_show_trailing_blankline_indent = false
+
+  -- Highlight on yank
+  vim.api.nvim_exec([[
+    augroup YankHighlight
+      autocmd!
+      autocmd TextYankPost * silent! lua vim.highlight.on_yank()
+    augroup end
+  ]], false)
+  -- Y yank until the end of line  (note: this is now a default on master)
+  vim.api.nvim_set_keymap('n', 'Y', 'y$', {noremap = true})
+end
+setup_key()
