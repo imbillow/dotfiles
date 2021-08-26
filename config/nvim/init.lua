@@ -57,6 +57,9 @@ require('packer').startup {
         vim.api.nvim_set_keymap('n', '<leader>?',
                                 [[<cmd>lua require('telescope.builtin').oldfiles()<CR>]],
                                 {noremap = true, silent = true})
+        vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so',
+                                      [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]],
+        {noremap = true, silent = true})
       end,
     }
     use {
@@ -196,17 +199,14 @@ require('packer').startup {
           vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e',
                                       '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>',
                                       opts)
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', '[d',
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', 'g[',
                                       '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
                                       opts)
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', ']d',
+          vim.api.nvim_buf_set_keymap(bufnr, 'n', 'g]',
                                       '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
                                       opts)
           vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q',
                                       '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>',
-                                      opts)
-          vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>so',
-                                      [[<cmd>lua require('telescope.builtin').lsp_document_symbols()<CR>]],
                                       opts)
           vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-M-l>',
                                       [[<cmd>lua vim.lsp.buf.formatting()<CR>]],
@@ -339,6 +339,8 @@ require('packer').startup {
         vim.g.nvim_tree_update_cwd = 1
         vim.g.nvim_tree_respect_buf_cwd = 1
         vim.g.nvim_tree_gitignore = 1
+        vim.go.nvim_tree_lsp_diagnostics = 1
+
         vim.api.nvim_set_keymap('n', '<leader>T', [[<cmd>NvimTreeToggle<CR>]],
                                 {noremap = true, silent = true})
       end,
@@ -352,6 +354,7 @@ require('packer').startup {
 }
 
 local setup_key = function()
+  vim.o.guifont = 'FiraCode Nerd Font Mono:h13'
   vim.o.hlsearch = true
   vim.wo.number = true
   vim.wo.relativenumber = true
