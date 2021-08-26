@@ -60,12 +60,12 @@ require('packer').startup {
       end,
     }
     use {
-      'joshdick/onedark.vim',
+      'dracula/vim',
       requires = {'tpope/vim-fugitive'},
       config = function()
-        vim.cmd [[colorscheme onedark]]
+        vim.cmd [[colorscheme dracula]]
         vim.g.lightline = {
-          colorscheme = 'onedark',
+          colorscheme = 'dracula',
           active = {
             left = {
               {'mode', 'paste'},
@@ -389,7 +389,6 @@ local setup_key = function()
   vim.o.updatetime = 250
   vim.wo.signcolumn = 'yes'
   vim.o.termguicolors = true
-  vim.g.onedark_terminal_italics = 2
   vim.api.nvim_set_keymap('', '<Space>', '<Nop>',
                           {noremap = true, silent = true})
   vim.g.mapleader = ' '
