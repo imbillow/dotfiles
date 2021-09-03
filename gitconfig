@@ -6,7 +6,6 @@
 	protocol = git
 [core]
 	autocrlf = input
-	editor = "emacs -nw"
 	excludesfile = /home/aya/.gitignore_global
 	pager = less -r
 [credential]
