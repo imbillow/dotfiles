@@ -30,3 +30,5 @@
 	insteadOf = https://github.com/
 [protocol "https"]
 	allow = always
+[pull]
+	rebase = false
