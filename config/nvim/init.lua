@@ -323,12 +323,12 @@ require('packer').startup {
     }
     use {
       'windwp/nvim-autopairs',
-      config = {
+      config = function()
         require('nvim-autopairs').setup {
           disable_filetype = { 'TelescopePrompt', 'vim' },
           check_ts = true,
-        },
-      },
+        }
+    end,
     }
     use {
       'folke/which-key.nvim',
