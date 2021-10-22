@@ -1,5 +1,5 @@
 DOTFILES_DIRS="$HOME/.dotfiles"
 EXCLUDES="install* README* packer_compiled*"
-TAGS="archlinux"
+TAGS="linux"
 SYMLINK_DIRS="config/fish config/kitty"
 UNDOTTED=""
