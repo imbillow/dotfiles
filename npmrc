@@ -1,2 +1,4 @@
-registry=https://registry.npmjs.org/
 //registry.npmjs.org/:_authToken=c28694d7-572f-478b-bdf4-38a98de47bef
+global-dir=/home/aya/.local/share/pnpm
+registry=https://registry.npmjs.org/
+global-bin-dir=/home/aya/.local/bin/

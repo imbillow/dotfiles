@@ -23,11 +23,11 @@
 [init]
 	defaultBranch = main
 [fetch]
-  prune = true
+	prune = true
 [rebase]
-  autosquash = true
-[url "https://hub.fastgit.org/"]
-	insteadOf = https://github.com/
+	autosquash = true
+#[url "https://hub.fastgit.org/"]
+#	insteadOf = https://github.com/
 [protocol "https"]
 	allow = always
 [pull]
