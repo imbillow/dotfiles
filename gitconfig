@@ -1,34 +1,36 @@
 [user]
-	name = billow
-	email = billow.fun@gmail.com
-	signingkey = 603F70632BFEE500985451C4A3FC7AFAF1932697
+    name = billow
+    email = billow.fun@gmail.com
+    signingkey = 603F70632BFEE500985451C4A3FC7AFAF1932697
 [hub]
-	protocol = git
+    protocol = git
 [core]
-	autocrlf = input
-	excludesfile = /home/aya/.gitignore_global
-	pager = less -r
+    autocrlf = input
+    excludesfile = /home/aya/.gitignore_global
+    pager = less -r
 [credential]
-	helper = cache --timeout=604800
+    helper = manager-core
+    helper = cache --timeout=604800
+    credentialStore = gpg
 [filter "lfs"]
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+    required = true
+    clean = git-lfs clean -- %f
 [commit]
-	gpgsign = false
-	#template = ~/.gitmessage
+    gpgsign = false
+    #template = ~/.gitmessage
 [color]
-	ui = true
+    ui = true
 [init]
-	defaultBranch = main
+    defaultBranch = main
 [fetch]
-	prune = true
+    prune = true
 [rebase]
-	autosquash = true
+    autosquash = true
 #[url "https://hub.fastgit.org/"]
 #	insteadOf = https://github.com/
 [protocol "https"]
-	allow = always
+    allow = always
 [pull]
-	rebase = false
+    rebase = false

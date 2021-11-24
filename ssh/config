@@ -1,6 +1,17 @@
 #ProxyCommand=ncat --proxy 127.0.0.1:1080 --proxy-type socks5 %h %p
 
+Host 192.168.0.11
+    HostName 192.168.0.11
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/ayaMac
+    User aya
+
 Host github.com
     PreferredAuthentications publickey
     IdentityFile ~/.ssh/gh
     User git
+
+Host vs-ssh.visualstudio.com
+    PreferredAuthentications publickey
+    IdentityFile ~/.ssh/azure
+    User hoshinoaya

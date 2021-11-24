@@ -25,6 +25,8 @@ export PERL_LOCAL_LIB_ROOT=/home/aya/perl5:$PERL_LOCAL_LIB_ROOT
 export PERL_MB_OPT=--install_base\ \"/home/aya/perl5\"
 export PERL_MM_OPT=INSTALL_BASE=/home/aya/perl5
 
+export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
+
 PATH_add $HOME/.local/bin
 PATH_add $HOME/.ghcup/bin
 PATH_add $HOME/.cabal/bin

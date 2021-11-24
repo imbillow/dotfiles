@@ -356,7 +356,6 @@ require('packer').startup {
     use 'dstein64/vim-startuptime'
   end,
   config = {
-    git = { default_url_format = 'https://hub.fastgit.org/%s.git' },
     profile = { enable = false },
   },
 }
@@ -385,7 +384,7 @@ local setup_key = function()
   vim.o.hidden = true
   vim.o.splitbelow = true
   vim.o.splitright = true
-  vim.o.tabstop = 2
+  vim.o.tabstop = 4
   vim.o.shiftwidth = vim.o.tabstop
   vim.o.smartindent = true
 

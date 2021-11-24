@@ -14,7 +14,3 @@ Rows=1
 
 [NightColor]
 Active=true
-
-[org.kde.kdecoration2]
-library=org.kde.kwin.aurorae
-theme=kwin4_decoration_qml_plastik
