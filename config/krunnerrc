@@ -1,4 +1,5 @@
 [General]
+FreeFloating=true
 history=
 
 [PlasmaRunnerManager]
@@ -19,6 +20,7 @@ calculatorEnabled=true
 desktopsessionsEnabled=true
 katesessionsEnabled=false
 konsoleprofilesEnabled=false
+krunner_systemsettingsEnabled=true
 kwinEnabled=true
 locationsEnabled=true
 org.kde.activities2Enabled=true

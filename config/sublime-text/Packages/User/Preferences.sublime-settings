@@ -2,7 +2,7 @@
 // and are overridden in turn by syntax-specific settings.
 {
     "font_face": "FiraCode Nerd Font Mono",
-    "font_size": 15,
+    "font_size": 12,
     "font_options": ["subpixel_antialias", "gray_antialias"],
     "rulers": [80],
     "spell_check": true,

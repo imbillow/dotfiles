@@ -11,7 +11,9 @@
 [credential]
     helper = manager-core
     helper = cache --timeout=604800
-    credentialStore = gpg
+	helper = 
+	helper = /usr/bin/git-credential-manager-core
+	credentialStore = secretservice
 [filter "lfs"]
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
@@ -28,9 +30,11 @@
     prune = true
 [rebase]
     autosquash = true
-#[url "https://hub.fastgit.org/"]
-#	insteadOf = https://github.com/
 [protocol "https"]
     allow = always
 [pull]
     rebase = false
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+#[url "https://hub.fastgit.org/"]
+#	insteadOf = https://github.com/
