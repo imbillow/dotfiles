@@ -38,3 +38,5 @@
 	useHttpPath = true
 #[url "https://hub.fastgit.org/"]
 #	insteadOf = https://github.com/
+[push]
+	autoSetupRemote = true

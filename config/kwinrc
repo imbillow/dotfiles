@@ -16,3 +16,8 @@ Rows=1
 Active=true
 LatitudeAuto=31.3093
 LongitudeAuto=120.602
+
+[org.kde.kdecoration2]
+BorderSize=None
+BorderSizeAuto=false
+theme=Breeze 微风

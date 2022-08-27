@@ -4,4 +4,7 @@ build
 Debug
 x64
 **/tags
+**/.envrc
 
+**/prefix
+**/build*
