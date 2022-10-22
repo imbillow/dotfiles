@@ -4,3 +4,11 @@ Host github.com
     PreferredAuthentications publickey
     IdentityFile ~/.ssh/hoshino.aya
     User git
+
+Host git.jetbrains.space
+  User git
+  HostName git.jetbrains.space
+  PreferredAuthentications publickey
+  IdentitiesOnly yes
+  IdentityFile ~/.ssh/hoshino.aya
+

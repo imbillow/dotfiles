@@ -17,8 +17,8 @@ export CXX_LD=/usr/bin/mold
 #export QT_IM_MODULE=fcitx
 #export XMODIFIERS=@im=fcitx
 
-export EDITOR="nvim"
-export VISUAL="nvim"
+export EDITOR="emacs"
+export VISUAL="emacs"
 export COLORTERM=truecolor
 
 # export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
