@@ -8,12 +8,6 @@
     autocrlf = input
     excludesfile = /home/aya/.gitignore_global
     pager = less -r
-[credential]
-    helper = manager-core
-    helper = cache --timeout=604800
-	helper = 
-	helper = /usr/bin/git-credential-manager-core
-	credentialStore = secretservice
 [filter "lfs"]
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
@@ -40,3 +34,9 @@
 #	insteadOf = https://github.com/
 [push]
 	autoSetupRemote = true
+[credential "https://github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = 
+	helper = !/usr/bin/gh auth git-credential
