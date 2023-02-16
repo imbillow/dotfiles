@@ -1,4 +1,1 @@
-export CC=/usr/bin/clang
-export CC_LD=/usr/bin/mold
-export CXX=/usr/bin/clang++
-export CXX_LD=/usr/bin/mold
+

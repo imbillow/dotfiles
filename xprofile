@@ -1,25 +1,5 @@
 # fcitx5 &
 ibus-daemon -drxR
-eval $(gnome-keyring-daemon --start)
-export SSH_AUTH_SOCK
-
-export CC=/usr/bin/clang
-export CC_LD=/usr/bin/mold
-export CXX=/usr/bin/clang++
-export CXX_LD=/usr/bin/mold
-
-# export GTK_IM_MODULE=ibus
-# export QT_IM_MODULE=ibus
-# export XMODIFIERS=@im=ibus
-
-#export INPUT_METHOD=fcitx
-#export GTK_IM_MODULE=fcitx
-#export QT_IM_MODULE=fcitx
-#export XMODIFIERS=@im=fcitx
-
-export EDITOR="emacs"
-export VISUAL="emacs"
-export COLORTERM=truecolor
 
 # export RUSTUP_DIST_SERVER=https://mirrors.tuna.tsinghua.edu.cn/rustup
 # export RUSTUP_UPDATE_ROOT=https://mirrors.tuna.tsinghua.edu.cn/rustup/rustup
@@ -34,8 +14,6 @@ export PERL5LIB=/home/aya/perl5/lib/perl5
 export PERL_LOCAL_LIB_ROOT=/home/aya/perl5:$PERL_LOCAL_LIB_ROOT
 export PERL_MB_OPT=--install_base\ \"/home/aya/perl5\"
 export PERL_MM_OPT=INSTALL_BASE=/home/aya/perl5
-
-export SSH_AUTH_SOCK="$XDG_RUNTIME_DIR/ssh-agent.socket"
 
 append_path () {
     case ":$PATH:" in
