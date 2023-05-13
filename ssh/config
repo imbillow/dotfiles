@@ -12,3 +12,7 @@ Host git.jetbrains.space
   IdentitiesOnly yes
   IdentityFile ~/.ssh/hoshino.aya
 
+Host aur.archlinux.org
+  PreferredAuthentications publickey
+  IdentityFile ~/.ssh/hoshino.aya
+  User aur

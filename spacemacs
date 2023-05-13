@@ -37,7 +37,7 @@ This function should only modify configuration layer settings."
      auto-completion
      better-defaults
      emacs-lisp
-     ;; git
+     git
      helm
      lsp
      multiple-cursors
@@ -59,9 +59,10 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(
-                                      fira-code-mode
-                                      )
+   dotspacemacs-additional-packages
+   '(
+    (llvm :location "~/Source/llvm-project/llvm/utils/emacs")
+    fira-code-mode)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -517,10 +518,10 @@ This function is called immediately after `dotspacemacs/init', before layer
 configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
-  (setq configuration-layer-elpa-archives
-        '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
-          ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
-          ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
+;;  (setq configuration-layer-elpa-archives
+;;        '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
+;;          ("org-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/")
+;;          ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")))
   )
 
 
@@ -538,8 +539,11 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (use-package fira-code-mode
-    :custom (fira-code-mode-disabled-ligatures '("[]" "x"))  ; ligatures you don't want
-    :hook prog-mode)                                         ; mode to enable fira-code-mode in
+    :custom (fira-code-mode-disabled-ligatures '("[]" "x")) ; ligatures you don't want
+    :hook prog-mode) ; mode to enable fira-code-mode in
+  (use-package llvm-mode :hook prog-mode)
+  (use-package llvm-mir-mode :hook prog-mode)
+  (use-package tablegen-mode :hook prog-mode)
   )
 
 

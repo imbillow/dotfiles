@@ -1,10 +1,5 @@
 ---
 backtrace: true
 bulk_threshold: 1000
-sources:
-- https://mirrors.tuna.tsinghua.edu.cn/rubygems/
-:update_sources: true
-:disable_default_gem_server: true
-:verbose: true
-concurrent_downloads: 8
+concurrent_downloads: 15
 gem: "--user-install"

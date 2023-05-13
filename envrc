@@ -1,1 +1,22 @@
+load_prefix $HOME/.local
+#export LLVM=1
+#export CC=clang
+#export CXX=clang++
+#export CC_LD=lld
+#export CXX_LD=lld
+#export LD=lld
+#export AR=llvm-ar
+#export NM=llvm-nm
+#export STRIP=llvm-strip
+#export OBJCOPY=llvm-objcopy
+#export OBJDUMP=llvm-objdump
+#export READELF=llvm-readelf
+#export HOSTCC=clang
+#export HOSTCXX=clang++
+#export HOSTAR=llvm-ar
+#export HOSTLD=ld.lld
+
+
+PATH_add $HOME/.local/share/JetBrains/Toolbox/scripts
+PATH_add $HOME/.yarn/bin
 

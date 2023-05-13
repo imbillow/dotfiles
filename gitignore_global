@@ -1,10 +1,16 @@
+# just for capstone
+*.cpp.inc
+
+.local
+.idea
+.vscode
 node_modules
 build
+cmake-build*
 .vs
 Debug
 x64
 **/tags
 **/.envrc
-
 **/prefix
 **/build*

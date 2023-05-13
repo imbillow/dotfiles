@@ -19,8 +19,12 @@
   -- root-keys:
   -- key-threshold: 3
 
-repository mirrors.tuna.tsinghua.edu.cn
-  url: http://mirrors.tuna.tsinghua.edu.cn/hackage
+--repository mirrors.tuna.tsinghua.edu.cn
+--  url: http://mirrors.tuna.tsinghua.edu.cn/hackage
+
+repository mirrors.ustc.edu.cn
+  url: https://mirrors.ustc.edu.cn/hackage/
+  secure: True
 
 -- default-user-config:
 -- ignore-expiry: False
@@ -49,7 +53,7 @@ verbose: 3
 -- executable-profiling:
 -- profiling-detail:
 -- library-profiling-detail:
--- optimization: True
+optimization: True
 -- debug-info: False
 -- library-for-ghci:
 -- split-sections: False
