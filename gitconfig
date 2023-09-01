@@ -1,63 +1,49 @@
 [user]
-    name = billow
-    email = billow.fun@gmail.com
+  name = billow
+  email = billow.fun@gmail.com
 	signingkey = 12E083A0D50128BE
 [hub]
-    protocol = git
+  protocol = git
 [core]
-    autocrlf = input
-    excludesfile = /home/aya/.gitignore_global
-    pager = less -r
+  autocrlf = input
+  excludesfile = /home/hoshinoaya/.gitignore_global
+  pager = less -r
 [filter "lfs"]
-    smudge = git-lfs smudge -- %f
-    process = git-lfs filter-process
-    required = true
-    clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
 [commit]
-	gpgsign = true
-    #template = ~/.gitmessage
+	# gpgsign = true
+  # template = ~/.gitmessage
 [color]
-    ui = true
+  ui = true
 [init]
-    defaultBranch = main
+  defaultBranch = main
 [fetch]
-    prune = true
+  prune = true
 [rebase]
-    autosquash = true
+  autosquash = true
 [protocol "https"]
-    allow = always
+  allow = always
 [pull]
-    rebase = false
+  rebase = false
 [credential "https://dev.azure.com"]
 	useHttpPath = true
-#[url "https://hub.fastgit.org/"]
-#	insteadOf = https://github.com/
 [push]
 	autoSetupRemote = true
 [credential "https://github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
+	helper =
+	helper = !/run/current-system/sw/bin/gh auth git-credential
 [credential "https://gist.github.com"]
-	helper = 
-	helper = !/usr/bin/gh auth git-credential
-
-
-[core]
-    # pager = delta
-
-[interactive]
-    # diffFilter = delta --color-only
-
+	helper =
+	helper = !/run/current-system/sw/bin/gh auth git-credential
 [delta]
-    navigate = true    # use n and N to move between diff sections
-    light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
-    # side-by-side = true
-    line-numbers = true
+  navigate = true    # use n and N to move between diff sections
+  light = false      # set to true if you're in a terminal w/ a light background color (e.g. the default macOS terminal)
+  # side-by-side = true
+  line-numbers = true
 [merge]
-    conflictstyle = diff3
-
+  conflictstyle = diff3
 [diff]
-    colorMoved = default
-[safe]
-	directory = /opt/flutter/
-	directory = /opt/flutter
+  colorMoved = default

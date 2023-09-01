@@ -31,10 +31,32 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    '(
      ;; fstar
+     (nixos :variables
+            nix-backend 'lsp
+            nixos-format-on-save t)
+     (c-c++ :variables
+            c-c++-backend 'lsp-clangd
+            c-c++-adopt-subprojects t
+            c-c++-lsp-enable-semantic-highlight 'rainbow
+            c-c++-dap-adapters '(dap-lldb dap-cpptools)
+            c-c++-default-mode-for-headers 'c++-mode
+            c-c++-enable-clang-format-on-save t
+     )
      yaml
      haskell
      markdown
-     auto-completion
+     (auto-completion :variables
+                      auto-completion-return-key-behavior 'complete
+                      auto-completion-tab-key-behavior 'cycle
+                      auto-completion-complete-with-key-sequence nil
+                      auto-completion-complete-with-key-sequence-delay 0.1
+                      auto-completion-minimum-prefix-length 2
+                      auto-completion-idle-delay 0.2
+                      auto-completion-private-snippets-directory nil
+                      auto-completion-enable-snippets-in-popup t
+                      auto-completion-enable-help-tooltip t
+                      auto-completion-use-company-box t
+                      auto-completion-enable-sort-by-usage t)
      better-defaults
      emacs-lisp
      git
@@ -60,9 +82,7 @@ This function should only modify configuration layer settings."
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages
-   '(
-    (llvm :location "~/Source/llvm-project/llvm/utils/emacs")
-    fira-code-mode)
+   '()
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -216,7 +236,13 @@ It should only modify the values of Spacemacs settings."
    ;; Default font or prioritized list of fonts. The `:size' can be specified as
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
-   dotspacemacs-default-font '(("FiraCode Nerd Font Mono"
+   dotspacemacs-default-font '(
+                               ("AnonymicePro Nerd Font Mono"
+                                :size 15.0
+                                :style Regular
+                                :weight normal
+                                :width normal)
+                               ("FiraCode Nerd Font Mono"
                                 :size 15.0
                                 :style Retina
                                 :weight normal
@@ -538,12 +564,6 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (use-package fira-code-mode
-    :custom (fira-code-mode-disabled-ligatures '("[]" "x")) ; ligatures you don't want
-    :hook prog-mode) ; mode to enable fira-code-mode in
-  (use-package llvm-mode :hook prog-mode)
-  (use-package llvm-mir-mode :hook prog-mode)
-  (use-package tablegen-mode :hook prog-mode)
   )
 
 
